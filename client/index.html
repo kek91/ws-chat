@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container"><br>
+        <div id="statusbar" class="alert alert-info" style="display:none; position:fixed; top:0; left:0;"></div>
+    </div>
+
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>WebSocket Chat - http://146.185.182.53/chat/</h3>
+                <div class="form-inline">
+                    <b>Nickname:</b>
+                    <input class="form-control" id="nick" type="textbox">
+                    <button class="btn btn-default" onclick="changeNickname()">Change</button>
+                    <button class="btn btn-default" onclick="getRandomNickname()">Surprise me</button>
+                    &nbsp; <label><input type="checkbox" name="autoscroll" onchange="toggleAutoScroll()" checked> Auto scroll chat</label>
+                </div>
+            </div>
+            <div class="panel-body" id="log"></div>
+        </div>
+        <div id="controls">
+            <div class="form-inline">
+                <input class="form-control" id="msg" type="textbox" onkeypress="onkey(event)"/>
+                <button class="btn btn-primary" onclick="send()">Send</button>
+                <button class="btn btn-warning" onclick="reconnect()">Reconnect</button>
+                <button class="btn btn-danger" onclick="quit()">Quit</button>
+            </div><br>
+            <br><div class="alert alert-info hidden" id="statusmsg"></div>
+        </div>
+    </div>
+
+    <!-- load the app javascript and start it up -->
+    <script src="app.js"></script>
+    <script>
+
+    init();
+
+    if(localStorage.getItem('autoscroll') == 1) {
+        window.setInterval(function() {
+          var logdiv = document.getElementById('log');
+          logdiv.scrollTop = logdiv.scrollHeight;
+        }, 250);
+    }
+    </script>
+
+</body>
+</html>

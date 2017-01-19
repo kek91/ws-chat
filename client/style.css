@@ -1,0 +1,12 @@
+#msg {
+    width:400px;
+}
+#log {
+    /*font-weight:bold;*/
+    font-size:10px;
+    height:400px;
+    overflow:auto;
+}
+#controls {
+    margin:10px;
+}
